@@ -16,28 +16,8 @@ def get_collection():
     except pymongo.errors.ServerSelectionTimeoutError:
         raise TimeoutError("Invalid API for MongoDB connection string or timed out when attempting to connect")
 
-    collection = create_database_unsharded_collection(client, DB_NAME, COLLECTION_NAME)
-    return collection
-
-def create_database_unsharded_collection(client, DB_NAME, COLLECTION_NAME):
-    """Create sample database with shared throughput if it doesn't exist and an unsharded collection"""
     db = client[DB_NAME]
-
-    # Create database if it doesn't exist
-    if DB_NAME not in client.list_database_names():
-        # Database with 400 RU throughput that can be shared across the DB's collections
-        db.command({'customAction': "CreateDatabase", 'offerThroughput': 400})
-        print("Created db {} with shared throughput". format(DB_NAME))
-    
-    # Create collection if it doesn't exist
-    if COLLECTION_NAME not in db.list_collection_names():
-        # Creates a unsharded collection that uses the DBs shared throughput
-        db.command({'customAction': "CreateCollection", 'collection': COLLECTION_NAME})
-        print("Created collection {}". format(COLLECTION_NAME))
-        print("Collection name {}". format(db.COLLECTION_NAME))
-    
     return db[COLLECTION_NAME]
-
 
 def create_restaurant_record(name, street_address, description):
     ts = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
