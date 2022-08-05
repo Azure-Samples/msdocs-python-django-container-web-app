@@ -79,7 +79,7 @@ def add_restaurant(request):
         restaurant = mongodb.create_restaurant_record(name, street_address, description)
         id = collection.insert_one(restaurant).inserted_id
                 
-        return HttpResponseRedirect(reverse('details', args=(id,)))
+    return HttpResponseRedirect(reverse('details', args=(id,)))
 
 def add_review(request, id):
     collection = mongodb.get_collection()
