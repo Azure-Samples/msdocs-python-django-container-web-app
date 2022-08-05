@@ -1,7 +1,3 @@
 from django.contrib import admin
-from .models import Restaurant, Review
 
-# Register your models here.
-
-admin.site.register(Restaurant)
-admin.site.register(Review)
+# We are using MongoDB so we don't need to register models here.
