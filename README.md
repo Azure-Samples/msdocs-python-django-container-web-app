@@ -6,7 +6,7 @@ Following the tutorial [TBD: coming soon](TBD), you can deploy this web app Azur
 
 If you need an Azure account, you can [create on for free](https://azure.microsoft.com/free/).
 
-A Flask sample application with similar functionality is at [TBD: coming soon](TBD).
+A Flask sample application with similar functionality is at [Flask Container Web App](https://github.com/Azure-Samples/msdocs-python-flask-container-web-app).
 
 ## Run and deploy options
 
